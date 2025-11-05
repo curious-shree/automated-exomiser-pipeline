@@ -101,7 +101,7 @@ def extract_hpo_data(features_string):
     for desc_with_suffix, hpo_id in matches:
         # Clean the description: remove trailing whitespace and the opening parenthesis
         clean_desc = desc_with_suffix.strip().rsplit('(', 1)[0].strip()
-        hpo_ids.append(hpo_id)
+        hpo_ids.append("'" + hpo_id + "'")
         hpo_descriptions.append(clean_desc)
 
     return hpo_ids, hpo_descriptions
@@ -140,7 +140,7 @@ def generate_yml_files(patient_data):
         return
     
     # Assuming VCF file name matches the Patient ID with a standard extension
-    vcf_filename = f"{patient_id}.vcf.gz" 
+    vcf_filename = f"{patient_id}.vcf" 
     vcf_full_path = os.path.join(VCF_BASE_DIRECTORY, vcf_filename)
     
     # Ensure the output directory exists
